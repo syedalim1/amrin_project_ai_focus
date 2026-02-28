@@ -1,0 +1,319 @@
+/* ========================================
+   Study Gate Keeper — Clean Simple Design
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f7fa;
+  color: #1a1a2e;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ---- Card ---- */
+.container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 44px 48px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Header ---- */
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.shield-icon {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.3px;
+}
+
+.blocked-domain {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+/* ---- Quote ---- */
+.quote-box {
+  background: #f8f9ff;
+  border-left: 3px solid #6366f1;
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 28px;
+}
+
+.quote-box p {
+  font-size: 12px;
+  color: #7c7c9a;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ---- Question ---- */
+.question-section {
+  margin-bottom: 20px;
+}
+
+.question-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #6366f1;
+  background: #eef2ff;
+  border-radius: 20px;
+  padding: 3px 12px;
+  margin-bottom: 12px;
+}
+
+.question-text {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* ---- Input ---- */
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a2e;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: #fff;
+}
+
+.input-group button {
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.input-group button:hover {
+  background: #4f52d9;
+}
+
+.input-group button:active {
+  transform: scale(0.97);
+}
+
+/* ---- Messages ---- */
+.error-msg {
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 10px;
+  min-height: 18px;
+}
+
+.success-msg {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success-msg.hidden {
+  display: none;
+}
+
+/* ---- Shake animation ---- */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+
+/* ---- AI Badge ---- */
+.ai-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 16px;
+}
+
+.ai-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fbbf24;
+  animation: blink 1.5s infinite;
+}
+
+.ai-dot.active {
+  background: #22c55e;
+  animation: none;
+}
+
+.ai-dot.error {
+  background: #d1d5db;
+  animation: none;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ---- Footer Stats ---- */
+.footer-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9ca3af;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 1px solid #f0f0f5;
+}
+
+.footer-stats strong {
+  color: #6366f1;
+}
+
+/* ---- Loader ---- */
+.loader {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---- Daily Limit Page ---- */
+.limit-reached {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.limit-reached h2 {
+  color: #ef4444;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.limit-reached p {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 22px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .question-text {
+    font-size: 15px;
+  }
+}

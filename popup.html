@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Study Gate Keeper</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="popup-container">
+        <!-- Header -->
+        <div class="popup-header">
+            <div class="logo">🎓</div>
+            <h1>Study Gate Keeper</h1>
+            <p class="subtitle">AI-Powered Focus Guard</p>
+        </div>
+
+        <!-- Toggle -->
+        <div class="toggle-section">
+            <span>Blocker Active</span>
+            <label class="switch">
+                <input type="checkbox" id="toggleEnabled" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalBlocks">0</div>
+                <div class="stat-label">Blocked</div>
+            </div>
+            <div class="stat-card correct">
+                <div class="stat-number" id="correctAnswers">0</div>
+                <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-card wrong">
+                <div class="stat-number" id="wrongAnswers">0</div>
+                <div class="stat-label">Wrong</div>
+            </div>
+            <div class="stat-card streak">
+                <div class="stat-number" id="streak">0</div>
+                <div class="stat-label">🔥 Streak</div>
+            </div>
+        </div>
+
+        <!-- Daily Unlocks -->
+        <div class="daily-section">
+            <span>Daily Unlocks: <strong id="dailyUnlocks">0</strong> / <strong id="dailyLimit">10</strong></span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="dailyProgress"></div>
+            </div>
+        </div>
+
+        <!-- Study Topics -->
+        <div class="section">
+            <h3>📚 Study Topics Detected</h3>
+            <div class="topics-list" id="topicsList">
+                <p class="empty-text">Visit Udemy or Coursera to detect topics...</p>
+            </div>
+        </div>
+
+        <!-- Gemini API Key -->
+        <div class="section">
+            <h3>🤖 Gemini AI Key</h3>
+            <div class="api-key-section">
+                <input type="password" id="apiKey" placeholder="Paste your Gemini API key">
+                <button id="saveApiKey">Save</button>
+            </div>
+            <p class="hint">Get a free key at <span class="link" id="aiStudioLink">aistudio.google.com</span></p>
+        </div>
+
+        <!-- Timer Duration -->
+        <div class="section">
+            <h3>⏱ Access Timer</h3>
+            <div class="timer-options">
+                <button class="timer-btn" data-minutes="5">5 min</button>
+                <button class="timer-btn" data-minutes="10">10 min</button>
+                <button class="timer-btn" data-minutes="15">15 min</button>
+                <button class="timer-btn" data-minutes="30">30 min</button>
+            </div>
+        </div>
+
+        <!-- Manage Allowed Sites -->
+        <div class="section">
+            <h3>✅ Allowed Sites</h3>
+            <div class="allowed-sites-list" id="allowedSitesList"></div>
+            <div class="add-site-section">
+                <input type="text" id="newSite" placeholder="e.g. khanacademy.org">
+                <button id="addSiteBtn">Add</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="popup-footer">
+            <button id="resetStats" class="reset-btn">Reset Stats</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

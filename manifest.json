@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Study Gate Keeper",
+    "version": "2.0",
+    "description": "AI-powered website blocker. Blocks all sites except study platforms. Uses Gemini AI to quiz you on what you're learning.",
+    "permissions": [
+        "tabs",
+        "storage",
+        "webNavigation"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "block.html"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "action": {
+        "default_title": "Study Gate Keeper",
+        "default_popup": "popup.html"
+    }
+}

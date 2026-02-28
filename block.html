@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Study Gate — Answer to Continue</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="shield-icon">🛡️</div>
+            <h1>Study Gate Keeper</h1>
+            <p class="blocked-domain" id="blockedDomain">Blocked Site</p>
+        </div>
+
+        <!-- Motivational Quote -->
+        <div class="quote-box">
+            <p id="quote">"Focus on being productive instead of busy."</p>
+        </div>
+
+        <!-- Question -->
+        <div class="question-section">
+            <div class="question-badge" id="questionBadge">📘 General Knowledge</div>
+            <h2 class="question-text" id="question">Loading question...</h2>
+
+            <div class="input-group">
+                <input type="text" id="answer" placeholder="Type your answer..." autocomplete="off" autofocus>
+                <button id="submitBtn">
+                    <span id="btnText">Submit</span>
+                    <span id="btnLoader" class="loader hidden"></span>
+                </button>
+            </div>
+
+            <p id="error" class="error-msg"></p>
+            <p id="success" class="success-msg hidden"></p>
+        </div>
+
+        <!-- AI Status -->
+        <div class="ai-badge" id="aiBadge">
+            <span class="ai-dot"></span>
+            <span id="aiStatus">Loading...</span>
+        </div>
+
+        <!-- Footer Stats -->
+        <div class="footer-stats">
+            <span>🔥 Streak: <strong id="streak">0</strong></span>
+            <span>📅 Today: <strong id="dailyCount">0</strong> / <strong id="dailyLimit">10</strong></span>
+        </div>
+
+    </div>
+
+    <script src="block.js"></script>
+</body>
+
+</html>
