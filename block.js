@@ -93,7 +93,7 @@ async function loadQuestion() {
     let data = await getStorageData(["settings", "studyTopics"]);
     let settings = data.settings || {};
     let studyTopics = data.studyTopics || [];
-    let apiKey = settings.geminiApiKey || "AIzaSyBkGhGr4JWIjsq5GGOPmevYcN8IQbxLo0s";
+    let apiKey = settings.geminiApiKey ;
 
     if (apiKey && studyTopics.length > 0) {
         // Try Gemini AI
