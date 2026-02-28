@@ -3,33 +3,6 @@
 // Gemini AI-Powered Question Engine
 // ========================================
 
-// ---- Fallback Static Question Bank ----
-const fallbackQuestions = [
-    // Math
-  
-    // Science
-    { q: "What planet is closest to the Sun?", a: "mercury", category: "🔬 Science" },
-    { q: "What gas do plants absorb from the air?", a: "carbon", category: "🔬 Science" },
-    { q: "What is the chemical symbol for water?", a: "h2o", category: "🔬 Science" },
-    { q: "How many bones are in the human body?", a: "206", category: "🔬 Science" },
-    { q: "What is the speed of light approximately?", a: "300", category: "🔬 Science" },
-    // Technology
-    { q: "What does CPU stand for?", a: "central processing unit", category: "💻 Technology" },
-    { q: "What does HTML stand for?", a: "hypertext markup language", category: "💻 Technology" },
-    { q: "What language is primarily used for web styling?", a: "css", category: "💻 Technology" },
-    { q: "What does RAM stand for?", a: "random access memory", category: "💻 Technology" },
-    { q: "What is the main programming language of Android apps?", a: "java", category: "💻 Technology" },
-    // General Knowledge
-    { q: "What is the capital of India?", a: "delhi", category: "🌍 General Knowledge" },
-    { q: "How many continents are there on Earth?", a: "7", category: "🌍 General Knowledge" },
-    { q: "What is the largest ocean in the world?", a: "pacific", category: "🌍 General Knowledge" },
-    { q: "Who invented the telephone?", a: "bell", category: "🌍 General Knowledge" },
-    { q: "In which year did World War II end?", a: "1945", category: "🌍 General Knowledge" },
-    // English
-    { q: "What is the synonym of 'Happy'?", a: "joyful", category: "📖 English" },
-    { q: "What is the antonym of 'Ancient'?", a: "modern", category: "📖 English" },
-    { q: "How many vowels are in the English alphabet?", a: "5", category: "📖 English" },
-];
 
 // ---- Motivational Quotes ----
 const quotes = [
@@ -112,7 +85,7 @@ function showDailyLimitReached() {
 }
 
 // ========================================
-// Load Question (AI or Fallback)
+// Load Question (AI Only)
 // ========================================
 async function loadQuestion() {
     setAiStatus("loading", "⏳ Preparing AI question...");
@@ -132,20 +105,23 @@ async function loadQuestion() {
             setAiStatus("active", "🤖 Gemini AI — Based on your studies");
             return;
         }
-        // AI failed — fallback
-        setAiStatus("error", "⚠️ AI error — using fallback question (check console)");
+        // AI failed
+        setAiStatus("error", "⚠️ AI error — check console or API quota");
+    } else {
+        if (!apiKey) {
+            setAiStatus("error", "ℹ️ Add Gemini API key in popup for AI questions");
+        } else if (studyTopics.length === 0) {
+            setAiStatus("error", "ℹ️ Visit Udemy/Coursera first to enable AI questions");
+        }
     }
 
-    // Fallback to static questions
-    selectedQuestion = fallbackQuestions[Math.floor(Math.random() * fallbackQuestions.length)];
+    // AI is the only source now
+    selectedQuestion = null;
     isAiQuestion = false;
-    renderQuestion();
-
-    if (!apiKey) {
-        setAiStatus("error", "ℹ️ Add Gemini API key in popup for AI questions");
-    } else if (studyTopics.length === 0) {
-        setAiStatus("error", "ℹ️ Visit Udemy/Coursera first to enable AI questions");
-    }
+    document.getElementById("question").textContent = "AI Question Unavailable. Please configure Gemini API and study topics.";
+    document.getElementById("questionBadge").textContent = "⚠️ Error";
+    document.getElementById("answer").disabled = true;
+    document.getElementById("submitBtn").disabled = true;
 }
 
 // ---- Render the question ----
