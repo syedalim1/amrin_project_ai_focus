@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadStats();
     loadSettings();
     loadTopics();
-    loadAllowedSites();
     setupEventListeners();
 });
 
@@ -78,27 +77,6 @@ function loadTopics() {
     });
 }
 
-function loadAllowedSites() {
-    chrome.storage.local.get("allowedSites", function (data) {
-        var sites = data.allowedSites || ["udemy.com", "coursera.org", "accounts.google.com"];
-        var list = document.getElementById("allowedSitesList");
-        list.innerHTML = "";
-
-        sites.forEach(function (site) {
-            var div = document.createElement("div");
-            div.className = "allowed-site-item";
-            div.innerHTML = '<span>🌐 ' + site + '</span><button class="remove-site-btn" data-site="' + site + '">✕</button>';
-            list.appendChild(div);
-        });
-
-        // Add remove event listeners
-        document.querySelectorAll(".remove-site-btn").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                removeSite(btn.getAttribute("data-site"));
-            });
-        });
-    });
-}
 
 // ========================================
 // Event Listeners
@@ -150,12 +128,6 @@ function setupEventListeners() {
         });
     });
 
-    // Add site
-    document.getElementById("addSiteBtn").addEventListener("click", addSite);
-    document.getElementById("newSite").addEventListener("keydown", function (e) {
-        if (e.key === "Enter") addSite();
-    });
-
     // Reset stats
     document.getElementById("resetStats").addEventListener("click", function () {
         chrome.storage.local.set({
@@ -175,33 +147,4 @@ function setupEventListeners() {
     });
 }
 
-// ========================================
-// Allowed Sites Management
-// ========================================
-function addSite() {
-    var input = document.getElementById("newSite");
-    var site = input.value.trim().toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, "").replace(/\/$/, "");
 
-    if (!site || !site.includes(".")) return;
-
-    chrome.storage.local.get("allowedSites", function (data) {
-        var sites = data.allowedSites || [];
-        if (!sites.includes(site)) {
-            sites.push(site);
-            chrome.storage.local.set({ allowedSites: sites }, function () {
-                input.value = "";
-                loadAllowedSites();
-            });
-        }
-    });
-}
-
-function removeSite(site) {
-    chrome.storage.local.get("allowedSites", function (data) {
-        var sites = data.allowedSites || [];
-        sites = sites.filter(function (s) { return s !== site; });
-        chrome.storage.local.set({ allowedSites: sites }, function () {
-            loadAllowedSites();
-        });
-    });
-}

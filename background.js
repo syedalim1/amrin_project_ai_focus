@@ -96,6 +96,9 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
     // Don't block empty or new tab pages
     if (!hostname || hostname === "newtab") return;
 
+    // Hardcoded essential domains
+    if (hostname.includes("accounts.google.com")) return;
+
     // Check settings and allowed sites
     chrome.storage.local.get(["allowedSites", "settings", "tempAllowed", "stats"], function (data) {
         let settings = data.settings || { enabled: true, timerMinutes: 5, dailyLimit: 10 };
